@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.RegisterCancion">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="847.0" prefWidth="894.0">
+         <children>
+            <Label layoutX="90.0" layoutY="74.0" prefHeight="40.0" prefWidth="105.0" text="Nombre">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="inputNombre" layoutX="90.0" layoutY="114.0" prefHeight="32.0" prefWidth="336.0" />
+            <Label layoutX="90.0" layoutY="156.0" prefHeight="40.0" prefWidth="134.0" text="Artista">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="90.0" layoutY="237.0" prefHeight="40.0" prefWidth="149.0" text="Compositor">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="90.0" layoutY="320.0" prefHeight="40.0" prefWidth="183.0" text="Fecha de lanzamiento">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="475.0" layoutY="156.0" prefHeight="40.0" prefWidth="161.0" text="Precio">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="467.0" layoutY="237.0" prefHeight="40.0" prefWidth="161.0" text="Album">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="467.0" layoutY="320.0" prefHeight="40.0" prefWidth="161.0" text="Genero">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Button fx:id="registrarBtn" layoutX="368.0" layoutY="583.0" mnemonicParsing="false" onAction="#registrar" text="Registrar">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Button>
+            <ChoiceBox fx:id="lista_generos" layoutX="467.0" layoutY="368.0" prefHeight="32.0" prefWidth="336.0" />
+            <ChoiceBox fx:id="lista_albumes" layoutX="467.0" layoutY="276.0" prefHeight="32.0" prefWidth="336.0" />
+            <DatePicker fx:id="inputLanzamiento" layoutX="90.0" layoutY="368.0" prefHeight="32.0" prefWidth="336.0" />
+            <ChoiceBox fx:id="lista_artistas" layoutX="90.0" layoutY="196.0" prefHeight="32.0" prefWidth="336.0" />
+            <ChoiceBox fx:id="lista_compositores" layoutX="90.0" layoutY="274.0" prefHeight="32.0" prefWidth="336.0" />
+            <TextField fx:id="inputPrecio" layoutX="475.0" layoutY="192.0" prefHeight="32.0" prefWidth="161.0" />
+            <CheckBox fx:id="checkBox" layoutX="475.0" layoutY="94.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="253.0" text="Para venderse en la tienda">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </CheckBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
