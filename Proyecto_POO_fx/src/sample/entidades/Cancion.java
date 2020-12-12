@@ -19,6 +19,7 @@ public class Cancion {
     private int creador;
     private boolean tienda;
     private double precio;
+    private int calificacion;
 
     /**
      * gert del id
@@ -200,9 +201,18 @@ public class Cancion {
         this.tienda = tienda;
     }
 
+    public int getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(int calificacion) {
+        this.calificacion = calificacion;
+    }
+
     /**
      * constructor vacío de canción
      */
+
 
 
 
@@ -220,7 +230,7 @@ public class Cancion {
      * @param precio
      */
 
-    public Cancion(String nombre, Artista artista, Genero genero, Compositor compositor, Date fecha_de_lanzamiento, Album album, double precio, int creador, boolean tienda) {
+    public Cancion(String nombre, Artista artista, Genero genero, Compositor compositor, Date fecha_de_lanzamiento, Album album, double precio, int creador, boolean tienda, int calificacion) {
         this.artista = artista;
         this.genero = genero;
         this.compositor = compositor;
@@ -229,6 +239,7 @@ public class Cancion {
         this.precio = precio;
         this.creador = creador;
         this.tienda = tienda;
+        this.calificacion = calificacion;
     }
 
     /**

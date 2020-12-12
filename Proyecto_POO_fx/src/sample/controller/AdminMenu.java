@@ -510,10 +510,10 @@ public class AdminMenu {
         this.albumesTable.setItems(getAlbumes());
 
         l_id.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        l_nombre.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        l_creacion.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        l_calificacion.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        l_creador.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        l_nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        l_creacion.setCellValueFactory(new PropertyValueFactory<>("fecha_de_creacion"));
+        l_calificacion.setCellValueFactory(new PropertyValueFactory<>("calificacion"));
+        l_creador.setCellValueFactory(new PropertyValueFactory<>("creador"));
         this.listasTable.setItems(getlistas());
 
         // (cellData -> new SimpleStringProperty(cellData.getValue()))
@@ -526,7 +526,7 @@ public class AdminMenu {
         cn_lanzamiento.setCellValueFactory(new PropertyValueFactory<>("ID"));
         cn_precio.setCellValueFactory(new PropertyValueFactory<>("ID"));
         cn_creador.setCellValueFactory(cellData -> new SimpleStringProperty( String.valueOf(cellData.getValue().getCreador())));
-        l_id.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        cn_nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         this.cancionesTable.setItems(getCanciones());
 
     }

@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -34,7 +35,7 @@
                   <Font size="17.0" />
                </font>
             </Label>
-            <Label layoutX="475.0" layoutY="156.0" prefHeight="40.0" prefWidth="161.0" text="Precio">
+            <Label layoutX="471.0" layoutY="156.0" prefHeight="40.0" prefWidth="161.0" text="Precio">
                <font>
                   <Font size="17.0" />
                </font>
@@ -59,12 +60,23 @@
             <DatePicker fx:id="inputLanzamiento" layoutX="90.0" layoutY="368.0" prefHeight="32.0" prefWidth="336.0" />
             <ChoiceBox fx:id="lista_artistas" layoutX="90.0" layoutY="196.0" prefHeight="32.0" prefWidth="336.0" />
             <ChoiceBox fx:id="lista_compositores" layoutX="90.0" layoutY="274.0" prefHeight="32.0" prefWidth="336.0" />
-            <TextField fx:id="inputPrecio" layoutX="475.0" layoutY="192.0" prefHeight="32.0" prefWidth="161.0" />
+            <TextField fx:id="inputPrecio" layoutX="471.0" layoutY="192.0" prefHeight="32.0" prefWidth="161.0" />
             <CheckBox fx:id="checkBox" layoutX="475.0" layoutY="94.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="253.0" text="Para venderse en la tienda">
                <font>
                   <Font size="17.0" />
                </font>
             </CheckBox>
+            <Button fx:id="backBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="40.0" prefWidth="74.0" text="Back">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Label layoutX="648.0" layoutY="156.0" prefHeight="40.0" prefWidth="161.0" text="Calificación">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Spinner fx:id="inputCalificacion" layoutX="648.0" layoutY="192.0" prefHeight="32.0" prefWidth="149.0" />
          </children>
       </AnchorPane>
    </children>

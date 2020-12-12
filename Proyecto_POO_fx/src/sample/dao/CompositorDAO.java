@@ -47,7 +47,7 @@ public class CompositorDAO {
             uno.setID(result.getInt("idcompositor"));
             uno.setNombre(result.getString("nombre"));
             uno.setApellido(result.getString("apellido"));
-            uno.setGenero(generoDAO.findGeneroByID(result.getInt("genero")));
+            uno.setGenero(generoDAO.findGeneroByID(result.getInt("id_genero")));
             uno.setPais_de_nacimiento(result.getString("pais_nacimiento"));
             uno.setEdad(result.getInt("edad"));
             listOfResults.add(uno);

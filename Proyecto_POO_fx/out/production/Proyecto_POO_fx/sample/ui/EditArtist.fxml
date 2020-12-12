@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.EditArtist">
    <children>
-      <AnchorPane layoutX="40.0" layoutY="40.0" prefHeight="847.0" prefWidth="894.0">
+      <AnchorPane layoutX="7.0" prefHeight="847.0" prefWidth="894.0">
          <children>
             <Label layoutX="90.0" layoutY="74.0" prefHeight="40.0" prefWidth="105.0" text="Nombre">
                <font>
@@ -59,6 +59,11 @@
             <ChoiceBox fx:id="lista_paises" layoutX="468.0" layoutY="196.0" prefHeight="32.0" prefWidth="336.0" />
             <DatePicker fx:id="inputNacimiento" layoutX="90.0" layoutY="368.0" prefHeight="32.0" prefWidth="336.0" />
             <DatePicker fx:id="inputDefuncion" layoutX="461.0" layoutY="114.0" prefHeight="32.0" prefWidth="336.0" />
+            <Button fx:id="backBtn" layoutX="21.0" layoutY="28.0" mnemonicParsing="false" onAction="#back" prefHeight="40.0" prefWidth="66.0" text="Back">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

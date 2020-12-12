@@ -169,14 +169,14 @@ public class Gestor {
 
     //CANCIONES
 
-    public void crearCancion(String nombre, Artista artista, Genero genero, Compositor compositor, String fecha_de_lanzamiento, Album album, double precio, int creador, boolean tienda) throws SQLException {
+    public void crearCancion(String nombre, Artista artista, Genero genero, Compositor compositor, String fecha_de_lanzamiento, Album album, double precio, int creador, boolean tienda, int calificacion) throws SQLException {
         Date lanzamiento = null;
         try {
             lanzamiento = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_de_lanzamiento);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        Cancion cancion = new Cancion(nombre, artista, genero, compositor, lanzamiento, album, precio, creador, tienda);
+        Cancion cancion = new Cancion(nombre, artista, genero, compositor, lanzamiento, album, precio, creador, tienda, calificacion);
         canciones.save(cancion);
     }
 
@@ -232,7 +232,7 @@ public class Gestor {
 
     //LISTAS
 
-    public void crearLista(Usuario creador, String nombre, String fecha_de_creacion, int calificacion) throws SQLException {
+    public void crearLista(int creador, String nombre, String fecha_de_creacion, int calificacion) throws SQLException {
         Date creacion = null;
         try {
             creacion = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_de_creacion);

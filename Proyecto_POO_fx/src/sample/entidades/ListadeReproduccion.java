@@ -11,7 +11,7 @@ import java.util.Objects;
 public class ListadeReproduccion {
 
     private int id;
-    private Usuario creador;
+    private int creador;
     private String nombre;
     private Date fecha_de_creacion;
     private int calificacion;
@@ -93,7 +93,7 @@ public class ListadeReproduccion {
      * @return
      */
 
-    public Usuario getCreador() {
+    public int getCreador() {
         return creador;
     }
 
@@ -102,7 +102,7 @@ public class ListadeReproduccion {
      * @param creador
      */
 
-    public void setIdusuario(Usuario creador) {
+    public void setCreador(int creador) {
         this.creador = creador;
     }
 
@@ -120,7 +120,7 @@ public class ListadeReproduccion {
      * @param calificacion
      */
 
-    public ListadeReproduccion(Usuario creador, String nombre, Date fecha_de_creacion, int calificacion) {
+    public ListadeReproduccion(int creador, String nombre, Date fecha_de_creacion, int calificacion) {
         this.creador = creador;
         this.nombre = nombre;
         this.fecha_de_creacion = fecha_de_creacion;

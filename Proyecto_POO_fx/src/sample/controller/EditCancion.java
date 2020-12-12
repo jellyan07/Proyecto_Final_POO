@@ -48,6 +48,9 @@ public class EditCancion {
     private TextField inputPrecio;
 
     @FXML
+    private Spinner<Integer> inputCalificacion;
+
+    @FXML
     private CheckBox checkBox;
 
     Genero genero_input = null;
@@ -56,6 +59,11 @@ public class EditCancion {
     Compositor compositor_input = null;
 
     public void initialize (Cancion cancion) throws SQLException {
+
+        inputPrecio.disableProperty().bind(checkBox.selectedProperty().not());
+        inputCalificacion.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 1,1));
+        inputCalificacion.setEditable(true);
+        inputCalificacion.getValueFactory().setValue(cancion.getCalificacion());
 
         // Generos
 
@@ -138,8 +146,9 @@ public class EditCancion {
                 precio = Double.parseDouble(inputPrecio.getText());
             }
             int creador = gestor.getUsuario().getId();
+            int calificacion = inputCalificacion.getValue();
 
-            gestor.crearCancion(nombre, artista_input, genero_input, compositor_input, lanzamiento, album_input, precio, creador, checkBox.isSelected());
+            gestor.crearCancion(nombre, artista_input, genero_input, compositor_input, lanzamiento, album_input, precio, creador, checkBox.isSelected(), calificacion);
 
             // get a handle to the stage
             Stage stage = (Stage) registrarBtn.getScene().getWindow();

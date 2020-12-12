@@ -29,7 +29,7 @@ public class CancionDAO {
     public void save(Cancion material) throws SQLException {
         Statement stmt = cnx.createStatement();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        StringBuilder buildSentence = new StringBuilder("insert into cancion (nombre, artista, genero, compositor, fecha_lanzamiento, album, creador, precio, tipo)");
+        StringBuilder buildSentence = new StringBuilder("insert into cancion (nombre, artista, genero, compositor, fecha_lanzamiento, album, creador, precio, tipo, calificacion)");
         buildSentence.append(" values ('");
         buildSentence.append(material.getNombre());
         buildSentence.append("',");
@@ -48,6 +48,8 @@ public class CancionDAO {
         buildSentence.append(material.getPrecio());
         buildSentence.append(",");
         buildSentence.append(material.isTienda());
+        buildSentence.append(",");
+        buildSentence.append(material.getCalificacion());
         buildSentence.append(")");
         System.out.println(buildSentence.toString());
         stmt.execute(buildSentence.toString());
@@ -67,6 +69,8 @@ public class CancionDAO {
             uno.setFecha_de_lanzamiento(result.getDate("fecha_lanzamiento"));
             uno.setAlbum(albumDAO.findAlbumByID(result.getInt("idalbum")));
             uno.setPrecio(result.getDouble("precio"));
+            uno.setTienda(result.getBoolean("tipo"));
+            uno.setCalificacion(result.getInt("calificacion"));
 
             listOfResults.add(uno);
         }
@@ -106,7 +110,8 @@ public class CancionDAO {
         buildSentence.append(cancion.getPrecio());
         buildSentence.append(", tipo = ");
         buildSentence.append(cancion.isTienda());
-
+        buildSentence.append(", calificacion = ");
+        buildSentence.append(cancion.getCalificacion());
         buildSentence.append(" where idcancion = ");
         buildSentence.append(cancion_cambiar.getID());
         buildSentence.append(";");

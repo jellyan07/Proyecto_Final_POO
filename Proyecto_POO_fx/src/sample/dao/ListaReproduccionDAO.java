@@ -28,13 +28,15 @@ public class ListaReproduccionDAO {
     public void save(ListadeReproduccion material) throws SQLException {
         Statement stmt = cnx.createStatement();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        StringBuilder buildSentence = new StringBuilder("insert into lista (nombre,fecha_creacion,calificacion)");
+        StringBuilder buildSentence = new StringBuilder("insert into lista (nombre,fecha_creacion,calificacion, id_creador)");
         buildSentence.append(" values ('");
         buildSentence.append(material.getNombre());
         buildSentence.append("','");
         buildSentence.append(dateFormat.format(material.getFecha_de_creacion()));
         buildSentence.append("',");
         buildSentence.append(material.getCalificacion());
+        buildSentence.append(",");
+        buildSentence.append(material.getCreador());
         buildSentence.append(")");
         System.out.println(buildSentence.toString());
         stmt.execute(buildSentence.toString());
@@ -50,6 +52,7 @@ public class ListaReproduccionDAO {
             uno.setNombre(result.getString("nombre"));
             uno.setFecha_de_creacion(result.getDate("fecha_creacion"));
             uno.setCalificacion(result.getInt("calificacion"));
+            uno.setCreador(result.getInt("id_creador"));
             listOfResults.add(uno);
         }
         return listOfResults;
@@ -94,10 +97,6 @@ public class ListaReproduccionDAO {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         StringBuilder buildSentence = new StringBuilder("update lista set nombre = '");
         buildSentence.append(lista.getNombre());
-        buildSentence.append("', fecha_creacion = '");
-        buildSentence.append(lista.getFecha_de_creacion());
-        buildSentence.append("', calificacion = ");
-        buildSentence.append(lista.getCalificacion());
         buildSentence.append(", where idlista = ");
         buildSentence.append(lista_cambiar.getId());
         buildSentence.append(";");

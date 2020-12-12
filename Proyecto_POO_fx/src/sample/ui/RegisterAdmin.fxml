@@ -8,50 +8,50 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.RegisterAdmin">
    <children>
-      <AnchorPane layoutX="-9.0" layoutY="47.0" prefHeight="847.0" prefWidth="894.0">
+      <AnchorPane layoutY="6.0" prefHeight="847.0" prefWidth="894.0">
          <children>
-            <Label layoutX="90.0" layoutY="74.0" prefHeight="40.0" prefWidth="105.0" text="Nombre">
+            <Label layoutX="90.0" layoutY="121.0" prefHeight="40.0" prefWidth="105.0" text="Nombre">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="inputNombre" layoutX="90.0" layoutY="114.0" prefHeight="32.0" prefWidth="336.0" />
-            <Label layoutX="90.0" layoutY="156.0" prefHeight="40.0" prefWidth="134.0" text="Primer Apellido">
+            <TextField fx:id="inputNombre" layoutX="90.0" layoutY="161.0" prefHeight="32.0" prefWidth="336.0" />
+            <Label layoutX="90.0" layoutY="203.0" prefHeight="40.0" prefWidth="134.0" text="Primer Apellido">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="inputApellido1" layoutX="90.0" layoutY="196.0" prefHeight="32.0" prefWidth="336.0" />
-            <Label layoutX="90.0" layoutY="237.0" prefHeight="40.0" prefWidth="149.0" text="Segundo Apellido">
+            <TextField fx:id="inputApellido1" layoutX="90.0" layoutY="243.0" prefHeight="32.0" prefWidth="336.0" />
+            <Label layoutX="90.0" layoutY="284.0" prefHeight="40.0" prefWidth="149.0" text="Segundo Apellido">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="inputApellido2" layoutX="90.0" layoutY="277.0" prefHeight="32.0" prefWidth="336.0" />
-            <Label layoutX="90.0" layoutY="320.0" prefHeight="40.0" prefWidth="161.0" text="Correo Electrónico">
+            <TextField fx:id="inputApellido2" layoutX="90.0" layoutY="324.0" prefHeight="32.0" prefWidth="336.0" />
+            <Label layoutX="90.0" layoutY="367.0" prefHeight="40.0" prefWidth="161.0" text="Correo Electrónico">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="inputCorreo" layoutX="90.0" layoutY="360.0" prefHeight="32.0" prefWidth="336.0" />
-            <Label layoutX="468.0" layoutY="78.0" prefHeight="40.0" prefWidth="161.0" text="Nombre de Usuario">
+            <TextField fx:id="inputCorreo" layoutX="90.0" layoutY="407.0" prefHeight="32.0" prefWidth="336.0" />
+            <Label layoutX="468.0" layoutY="125.0" prefHeight="40.0" prefWidth="161.0" text="Nombre de Usuario">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="inputNombreUsuario" layoutX="468.0" layoutY="118.0" prefHeight="32.0" prefWidth="336.0" />
-            <Label layoutX="468.0" layoutY="160.0" prefHeight="40.0" prefWidth="161.0" text="Contraseña">
+            <TextField fx:id="inputNombreUsuario" layoutX="468.0" layoutY="165.0" prefHeight="32.0" prefWidth="336.0" />
+            <Label layoutX="468.0" layoutY="207.0" prefHeight="40.0" prefWidth="161.0" text="Contraseña">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="inputPassword" layoutX="468.0" layoutY="200.0" prefHeight="32.0" prefWidth="336.0" />
-            <Label layoutX="468.0" layoutY="243.0" prefHeight="40.0" prefWidth="161.0" text="Foto de perfil">
+            <TextField fx:id="inputPassword" layoutX="468.0" layoutY="247.0" prefHeight="32.0" prefWidth="336.0" />
+            <Label layoutX="468.0" layoutY="290.0" prefHeight="40.0" prefWidth="161.0" text="Foto de perfil">
                <font>
                   <Font size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="inputImg" layoutX="468.0" layoutY="283.0" prefHeight="32.0" prefWidth="336.0" />
+            <TextField fx:id="inputImg" layoutX="468.0" layoutY="330.0" prefHeight="32.0" prefWidth="336.0" />
             <Button fx:id="registrarBtn" layoutX="368.0" layoutY="583.0" mnemonicParsing="false" onAction="#registrar" text="Registrar">
                <font>
                   <Font size="23.0" />
@@ -59,5 +59,10 @@
             </Button>
          </children>
       </AnchorPane>
+      <Button fx:id="backBtn" layoutX="27.0" layoutY="35.0" mnemonicParsing="false" onAction="#back" prefHeight="40.0" prefWidth="80.0" text="Back">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
