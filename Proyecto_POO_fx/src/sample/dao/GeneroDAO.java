@@ -43,7 +43,7 @@ public class GeneroDAO {
             Genero uno = new Genero();
             uno.setID(result.getInt("idgenero"));
             uno.setNombre(result.getString("nombre"));
-            uno.setNombre(result.getString("descripcion"));
+            uno.setDescripcion(result.getString("descripcion"));
             listOfResults.add(uno);
         }
         return listOfResults;

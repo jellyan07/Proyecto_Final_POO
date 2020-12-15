@@ -231,6 +231,7 @@ public class Cancion {
      */
 
     public Cancion(String nombre, Artista artista, Genero genero, Compositor compositor, Date fecha_de_lanzamiento, Album album, double precio, int creador, boolean tienda, int calificacion) {
+        this.nombre = nombre;
         this.artista = artista;
         this.genero = genero;
         this.compositor = compositor;
@@ -249,16 +250,7 @@ public class Cancion {
 
     @Override
     public String toString() {
-        return "Cancion{" +
-                "id='" + ID + '\'' +
-                ", Nombre= " + nombre +
-                ", artista=" + artista +
-                ", genero=" + genero +
-                ", compositor=" + compositor +
-                ", fecha_de_lanzamiento='" + fecha_de_lanzamiento + '\'' +
-                ", album=" + album +
-                ", precio=" + precio +
-                '}';
+        return getNombre();
     }
 
     /**

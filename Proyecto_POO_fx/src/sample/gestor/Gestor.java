@@ -16,25 +16,7 @@ import java.util.Optional;
 public class Gestor {
 
     private Connection conection;
-
-    public Gestor() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-            this.conection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bdproject?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
-                    , "root", "root");
-            this.artistas = new ArtistaDAO(this.conection);
-            this.usuarios = new UsuarioDAO(this.conection);
-            this.compositores = new CompositorDAO(this.conection);
-            this.generos = new GeneroDAO(this.conection);
-            this.albumes = new AlbumDAO(this.conection);
-            this.listas = new ListaReproduccionDAO(this.conection);
-            this.canciones = new CancionDAO(this.conection);
-            this.admins = new AdminDAO(this.conection);
-        } catch (Exception e) {
-            System.out.println("Cant connect to db");
-            e.printStackTrace();
-        }
-    }
+    Configuracion conf;
 
     private Usuario usuario;
     private ArtistaDAO artistas;
@@ -45,6 +27,34 @@ public class Gestor {
     private ListaReproduccionDAO listas;
     private CancionDAO canciones;
     private AdminDAO admins;
+
+    public Gestor() {
+        this.conf = new Configuracion();
+        try {
+            Optional<String> driver = conf.getDriver();
+            Optional<String> cnxStr = conf.getDBUrl();
+            Optional<String> usr = conf.getUserName();
+            Optional<String> pwd = conf.getPassword();
+            if (driver.isPresent() && cnxStr.isPresent() && usr.isPresent() && pwd.isPresent()) {
+                Class.forName(driver.get()).newInstance();
+                this.conection = DriverManager.getConnection(cnxStr.get(),
+                        usr.get(), pwd.get());
+                this.usuarios = new UsuarioDAO(this.conection);
+                this.generos = new GeneroDAO(this.conection);
+                this.compositores = new CompositorDAO(this.conection);
+                this.albumes = new AlbumDAO(this.conection);
+                this.listas = new ListaReproduccionDAO(this.conection);
+                this.artistas = new ArtistaDAO(this.conection);
+                this.canciones = new CancionDAO(this.conection);
+                this.admins = new AdminDAO(this.conection);
+            }
+
+
+        } catch (Exception e) {
+            System.out.println("Cant connect to db");
+            e.printStackTrace();
+        }
+    }
 
     public void setUsuario (Usuario usuario) {
         this.usuario = usuario;

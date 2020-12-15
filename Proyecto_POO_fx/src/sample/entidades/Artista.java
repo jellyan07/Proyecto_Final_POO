@@ -218,17 +218,7 @@ public class Artista {
 
     @Override
     public String toString() {
-        return "Artista{" +
-                "ID=" + ID +
-                ", Nombre='" + Nombre + '\'' +
-                ", Apellido='" + Apellido + '\'' +
-                ", nombre_artístico='" + nombre_artistico + '\'' +
-                ", fecha_de_nacimiento=" + fecha_de_nacimiento +
-                ", fecha_de_defuncion=" + fecha_de_defuncion +
-                ", pais_de_nacimiento='" + pais_de_nacimiento + '\'' +
-                ", genero='" + genero + '\'' +
-                ", edad=" + edad +
-                '}';
+        return getNombre_artistico();
     }
 
     /**

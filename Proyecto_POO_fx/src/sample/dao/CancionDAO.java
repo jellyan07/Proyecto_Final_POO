@@ -17,13 +17,17 @@ import java.util.List;
 public class CancionDAO {
 
     Connection cnx;
-    ArtistaDAO artistaDAO = new ArtistaDAO(cnx);
-    AlbumDAO albumDAO = new AlbumDAO(cnx);
-    GeneroDAO generoDAO = new GeneroDAO(cnx);
-    CompositorDAO compositorDAO = new CompositorDAO(cnx);
+    ArtistaDAO artistaDAO;
+    AlbumDAO albumDAO;
+    GeneroDAO generoDAO;
+    CompositorDAO compositorDAO;
 
     public CancionDAO(Connection cnx){
         this.cnx = cnx;
+        this.artistaDAO = new ArtistaDAO(cnx);
+        this.albumDAO = new AlbumDAO(cnx);
+        this.generoDAO = new GeneroDAO(cnx);
+        this.compositorDAO = new CompositorDAO(cnx);
     }
 
     public void save(Cancion material) throws SQLException {
@@ -63,11 +67,11 @@ public class CancionDAO {
             Cancion uno = new Cancion();
             uno.setID(result.getInt("idcancion"));
             uno.setNombre(result.getString("nombre"));
-            uno.setArtista(artistaDAO.findArtistaByID(result.getInt("idartista")));
-            uno.setGenero(generoDAO.findGeneroByID(result.getInt("idgenero")));
-            uno.setCompositor(compositorDAO.findCompositorByID(result.getInt("idcompositor")));
+            uno.setArtista(artistaDAO.findArtistaByID(result.getInt("artista")));
+            uno.setGenero(generoDAO.findGeneroByID(result.getInt("genero")));
+            uno.setCompositor(compositorDAO.findCompositorByID(result.getInt("compositor")));
             uno.setFecha_de_lanzamiento(result.getDate("fecha_lanzamiento"));
-            uno.setAlbum(albumDAO.findAlbumByID(result.getInt("idalbum")));
+            uno.setAlbum(albumDAO.findAlbumByID(result.getInt("album")));
             uno.setPrecio(result.getDouble("precio"));
             uno.setTienda(result.getBoolean("tipo"));
             uno.setCalificacion(result.getInt("calificacion"));

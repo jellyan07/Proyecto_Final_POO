@@ -48,8 +48,9 @@ public class RegisterLista {
     public void initialize () throws SQLException {
 
         c_id.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        c_artista.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getArtista().getNombre()));
         c_nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        c_artista.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getArtista().getNombre()));
+        this.t_canciones_elegir.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         this.t_canciones_elegir.setItems(getCanciones());
 
     }

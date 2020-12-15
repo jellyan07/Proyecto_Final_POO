@@ -14,11 +14,12 @@ public class CompositorDAO {
 
 
     Connection cnx;
+    private GeneroDAO generoDAO;
 
     public CompositorDAO(Connection cnx){
         this.cnx = cnx;
+        this.generoDAO = new GeneroDAO(cnx);
     }
-    private GeneroDAO generoDAO = new GeneroDAO(cnx);
 
     public void save(Compositor material) throws SQLException {
         Statement stmt = cnx.createStatement();

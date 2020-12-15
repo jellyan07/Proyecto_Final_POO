@@ -139,7 +139,7 @@ public class RegisterCancion {
                 precio = Double.parseDouble(inputPrecio.getText());
             }
 
-            int creador = 1;
+            int creador = 111;
             int calificacion = inputCalificacion.getValue();
 
 

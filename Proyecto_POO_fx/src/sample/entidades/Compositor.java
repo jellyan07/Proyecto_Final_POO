@@ -152,13 +152,7 @@ public class Compositor {
 
     @Override
     public String toString() {
-        return "Compositor{" +
-                "ID=" + ID +
-                ", Nombre='" + Nombre + '\'' +
-                ", Apellido='" + Apellido + '\'' +
-                ", pais_de_nacimiento='" + pais_de_nacimiento + '\'' +
-                ", edad=" + edad +
-                '}';
+        return getNombre() + " " + getApellido();
     }
 
     /**

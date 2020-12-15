@@ -325,7 +325,7 @@ public class AdminMenu {
     }
 
     @FXML
-    void editarArtista(ActionEvent event) {
+    void editarArtista(ActionEvent event) throws SQLException {
         Artista artista_seleccionado = artistsTable.getSelectionModel().getSelectedItem();
         System.out.println(artista_seleccionado.toString());
         try {
@@ -341,10 +341,11 @@ public class AdminMenu {
         } catch (SQLException | IOException throwables) {
             throwables.printStackTrace();
         }
+        cargar();
     }
 
     @FXML
-    void editarCompositor(ActionEvent event) {
+    void editarCompositor(ActionEvent event) throws SQLException {
         Compositor compositor_seleccionado = compositoresTable.getSelectionModel().getSelectedItem();
         System.out.println(compositor_seleccionado.toString());
         try {
@@ -360,10 +361,11 @@ public class AdminMenu {
         } catch (SQLException | IOException throwables) {
             throwables.printStackTrace();
         }
+        cargar();
     }
 
     @FXML
-    void editarGenero(ActionEvent event) {
+    void editarGenero(ActionEvent event) throws SQLException {
         Genero genero_seleccionado = generosTable.getSelectionModel().getSelectedItem();
         System.out.println(genero_seleccionado.toString());
         try {
@@ -379,10 +381,11 @@ public class AdminMenu {
         } catch (SQLException | IOException throwables) {
             throwables.printStackTrace();
         }
+        cargar();
     }
 
     @FXML
-    void editarCancion(ActionEvent event) {
+    void editarCancion(ActionEvent event) throws SQLException {
         Cancion cancion_seleccionado = cancionesTable.getSelectionModel().getSelectedItem();
         System.out.println(cancion_seleccionado.toString());
         try {
@@ -398,6 +401,7 @@ public class AdminMenu {
         } catch (SQLException | IOException throwables) {
             throwables.printStackTrace();
         }
+        cargar();
     }
 
     @FXML
@@ -406,76 +410,107 @@ public class AdminMenu {
     }
 
     @FXML
-    void registrarAlbum(ActionEvent event) throws IOException {
-
-        Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
-
-        Parent ruta = FXMLLoader.load(getClass().getResource("../ui/RegisterAlbum.fxml"));
-
-        Scene nueva_escena = new Scene(ruta);
-        escenaPrincipal.hide();
-
-        escenaPrincipal.setScene(nueva_escena);
-        escenaPrincipal.show();
+    void registrarAlbum(ActionEvent event) throws IOException, SQLException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/RegisterAlbum.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException throwables) {
+            throwables.printStackTrace();
+        }
+        cargar();
     }
 
     @FXML
-    void registrarCompositor(ActionEvent event) throws IOException {
-        Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
-
-        Parent ruta = FXMLLoader.load(getClass().getResource("../ui/RegisterCompositor.fxml"));
-
-        Scene nueva_escena = new Scene(ruta);
-        escenaPrincipal.hide();
-
-        escenaPrincipal.setScene(nueva_escena);
-        escenaPrincipal.show();
+    void registrarCompositor(ActionEvent event) throws IOException, SQLException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/RegisterCompositor.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException throwables) {
+            throwables.printStackTrace();
+        }
+        cargar();
     }
 
     @FXML
-    void registrarGenero(ActionEvent event) throws IOException {
-        Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
-
-        Parent ruta = FXMLLoader.load(getClass().getResource("../ui/RegisterGenero.fxml"));
-
-        Scene nueva_escena = new Scene(ruta);
-        escenaPrincipal.hide();
-
-        escenaPrincipal.setScene(nueva_escena);
-        escenaPrincipal.show();
+    void registrarGenero(ActionEvent event) throws IOException, SQLException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/RegisterGenero.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException throwables) {
+            throwables.printStackTrace();
+        }
+        cargar();
     }
 
     @FXML
-    void registrarLista(ActionEvent event) {
-
+    void registrarLista(ActionEvent event) throws SQLException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/RegisterLista.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException throwables) {
+            throwables.printStackTrace();
+        }
+        cargar();
     }
 
     @FXML
-    void registrarCancion(ActionEvent event) throws IOException {
-
-        Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
-
-        Parent ruta = FXMLLoader.load(getClass().getResource("../ui/RegisterCancion.fxml"));
-
-        Scene nueva_escena = new Scene(ruta);
-        escenaPrincipal.hide();
-
-        escenaPrincipal.setScene(nueva_escena);
-        escenaPrincipal.show();
+    void registrarCancion(ActionEvent event) throws IOException, SQLException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/RegisterCancion.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException throwables) {
+            throwables.printStackTrace();
+        }
+        cargar();
     }
 
     @FXML
-    void registrarArtista(ActionEvent event) throws IOException {
+    void registrarArtista(ActionEvent event) throws IOException, SQLException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/RegisterArtist.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException throwables) {
+            throwables.printStackTrace();
+        }
+        cargar();
+    }
 
-        Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
-
-        Parent ruta = FXMLLoader.load(getClass().getResource("../ui/RegisterArtist.fxml"));
-
-        Scene nueva_escena = new Scene(ruta);
-        escenaPrincipal.hide();
-
-        escenaPrincipal.setScene(nueva_escena);
-        escenaPrincipal.show();
+    public void cargar () throws SQLException {
+        this.artistsTable.refresh();
+        this.compositoresTable.refresh();
+        this.generosTable.refresh();
+        this.albumesTable.refresh();
+        this.listasTable.refresh();
     }
 
     public void initialize () throws SQLException {
@@ -519,6 +554,7 @@ public class AdminMenu {
         // (cellData -> new SimpleStringProperty(cellData.getValue()))
 
         cn_id.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        cn_nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         cn_artista.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getArtista().getNombre()));
         cn_compositor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCompositor().getNombre()));
         cn_genero.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGenero().getNombre()));
@@ -526,7 +562,6 @@ public class AdminMenu {
         cn_lanzamiento.setCellValueFactory(new PropertyValueFactory<>("ID"));
         cn_precio.setCellValueFactory(new PropertyValueFactory<>("ID"));
         cn_creador.setCellValueFactory(cellData -> new SimpleStringProperty( String.valueOf(cellData.getValue().getCreador())));
-        cn_nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         this.cancionesTable.setItems(getCanciones());
 
     }
