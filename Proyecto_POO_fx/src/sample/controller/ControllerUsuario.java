@@ -14,10 +14,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import sample.entidades.Admin;
+import sample.entidades.Usuario;
 import sample.gestor.Gestor;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ControllerUsuario {
 
@@ -49,29 +51,24 @@ public class ControllerUsuario {
         if(!userInput.getText().isEmpty() && !passInput.getText().isEmpty() && userInput != null && passInput != null) {
             try{
                 String userNum = userInput.getText();
-                Admin admin = gestor.getAdmin();
-                if(admin.getNombre_usuario().equals(userInput.getText())) {
-                    if (admin.getPassword().equals(passInput.getText())) {
-                        //Ir al menú principal
-                        System.out.println("Usuario Correcto");
-                        // Usuario no existe
-                        openUsuarioMenuWindow(event);
-                    } else {
-                        //Contraseña incorrecta
-                        System.out.println("Contraseña incorrecta");
+                List<Usuario> usuarios = gestor.listUsuarios();
+                boolean encontrado = false;
+                for (Usuario usuario:usuarios) {
+                    if(usuario.getNombre_usuario().equals(userInput.getText())) {
+                        encontrado = true;
+                        if (usuario.getPassword().equals(passInput.getText())) {
+                            //Ir al menú principal
+                            System.out.println("Usuario Correcto");
+                            // Usuario no existe
+                            openUsuarioMenuWindow(event);
+                            gestor.setUsuario(usuario);
+                        } else {
+                            //Contraseña incorrecta
+                            System.out.println("Contraseña incorrecta");
+                        }
                     }
-                }  else {
-                    // Usuario no existe
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/AlertBox.fxml"));
-                    Parent root1 = (Parent) fxmlLoader.load();
-                    AlertBox controller = fxmlLoader.getController();
-                    controller.initData("Usuario no existe");
-                    Stage stage = new Stage();
-                    stage.initModality(Modality.APPLICATION_MODAL);
-                    stage.initStyle(StageStyle.UNDECORATED);
-                    stage.setScene(new Scene(root1));
-                    stage.show();
                 }
+
             } catch(NumberFormatException num) {
                 num.printStackTrace();
             } catch (SQLException throwables) {
@@ -94,16 +91,18 @@ public class ControllerUsuario {
     }
 
     @FXML
-    void openUsuarioWindow(ActionEvent event) throws IOException {
-        Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
-
-        Parent ruta = FXMLLoader.load(getClass().getResource("../ui/RegisterAdmin.fxml"));
-
-        Scene nueva_escena = new Scene(ruta);
-        escenaPrincipal.hide();
-
-        escenaPrincipal.setScene(nueva_escena);
-        escenaPrincipal.show();
+    void openRegisterWindow(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/RegisterUsuario.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch (IOException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     void openUsuarioMenuWindow(ActionEvent event) throws IOException {

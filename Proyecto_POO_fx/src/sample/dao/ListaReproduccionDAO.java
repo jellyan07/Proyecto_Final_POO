@@ -25,7 +25,7 @@ public class ListaReproduccionDAO {
         this.cancionDAO = new CancionDAO(cnx);
     }
 
-    public void save(ListadeReproduccion material) throws SQLException {
+    public void save(ListadeReproduccion material,List<Cancion> canciones) throws SQLException {
         Statement stmt = cnx.createStatement();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         StringBuilder buildSentence = new StringBuilder("insert into lista (nombre,fecha_creacion,calificacion, id_creador)");
@@ -40,6 +40,22 @@ public class ListaReproduccionDAO {
         buildSentence.append(")");
         System.out.println(buildSentence.toString());
         stmt.execute(buildSentence.toString());
+        Statement insertCmd = null;
+        int key = -1;
+        try {
+            insertCmd = cnx.createStatement();
+            insertCmd.execute(String.valueOf(buildSentence),Statement.RETURN_GENERATED_KEYS);
+            ResultSet generatedKeys = insertCmd.getGeneratedKeys();
+            while (generatedKeys.next()) {
+                key = generatedKeys.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        for (Cancion cancion:
+                canciones) {
+            saveCancionToLista(cancion, key);
+        }
     }
 
     public List<ListadeReproduccion> findAll() throws SQLException {
@@ -58,13 +74,13 @@ public class ListaReproduccionDAO {
         return listOfResults;
     }
 
-    public void saveCancionToLista (Cancion cancion, ListadeReproduccion lista) throws SQLException {
+    public void saveCancionToLista (Cancion cancion, int id_lista) throws SQLException {
         Statement stmt = cnx.createStatement();
-        StringBuilder buildSentence = new StringBuilder("insert into tlista-cancion (idlista,nombre,fecha_creacion,calificacion)");
+        StringBuilder buildSentence = new StringBuilder("insert into tlista_cancion (idlista,idcancion)");
         buildSentence.append(" values (");
+        buildSentence.append(id_lista);
+        buildSentence.append(",");
         buildSentence.append(cancion.getID());
-        buildSentence.append(",'");
-        buildSentence.append(lista.getId());
         buildSentence.append(")");
         System.out.println(buildSentence.toString());
         stmt.execute(buildSentence.toString());
@@ -83,7 +99,7 @@ public class ListaReproduccionDAO {
     public List<Cancion> findSongsfromList(ListadeReproduccion lista) throws SQLException {
         ArrayList<Cancion> listOfResults = new ArrayList<>();
         Statement stmt = cnx.createStatement();
-        ResultSet result = stmt.executeQuery("select * from lista where idlista = " + lista.getId());
+        ResultSet result = stmt.executeQuery("select * from tlista_cancion where idlista = " + lista.getId());
         while(result.next()){
             Cancion uno = new Cancion();
             uno = cancionDAO.findCancionByID(result.getInt("idcancion"));

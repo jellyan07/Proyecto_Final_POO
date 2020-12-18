@@ -78,7 +78,7 @@ public class RegisterLista {
                 t_canciones_elegir.getSelectionModel().getSelectedItems() != null) {
 
             String nombre = inputNombre.getText();
-            int creador = gestor.getUsuario().getId();
+            int creador = 101;
             String fecha = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             List<Cancion> canciones = getItems(t_canciones_elegir.getSelectionModel().getSelectedItems());
             int promedio = 0;
@@ -89,7 +89,7 @@ public class RegisterLista {
             }
             int calificacion = promedio/cont;
 
-            gestor.crearLista(creador, nombre, fecha, calificacion);
+            gestor.crearLista(creador, nombre, fecha, calificacion, canciones);
 
             // get a handle to the stage
             Stage stage = (Stage) registrarBtn.getScene().getWindow();

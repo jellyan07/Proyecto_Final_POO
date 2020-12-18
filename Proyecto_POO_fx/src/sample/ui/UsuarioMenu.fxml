@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="813.0" prefWidth="1137.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.UsuarioMenu">
+   <children>
+      <TabPane layoutY="69.0" prefHeight="744.0" prefWidth="1137.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Artistas">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="artistsTable" layoutX="17.0" layoutY="14.0" prefHeight="588.0" prefWidth="1104.0">
+                          <columns>
+                            <TableColumn fx:id="a_nombre_artistico" prefWidth="169.0" text="Nombre Artistico" />
+                            <TableColumn fx:id="a_nombre" minWidth="0.0" prefWidth="132.0" text="Nombre" />
+                              <TableColumn fx:id="a_apellido" prefWidth="108.0" text="Apellido" />
+                              <TableColumn fx:id="a_pais" prefWidth="142.0" text="Pais de nacimiento" />
+                              <TableColumn fx:id="a_nacimiento" prefWidth="140.0" text="Fecha de nacimiento" />
+                              <TableColumn fx:id="a_defuncion" prefWidth="156.0" text="Fecha de defuncion" />
+                              <TableColumn fx:id="a_genero" prefWidth="97.0" text="Genero" />
+                              <TableColumn fx:id="a_edad" prefWidth="73.0" text="Edad" />
+                              <TableColumn fx:id="a_id" prefWidth="86.0" text="ID" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="registrarArtistaBtn" layoutX="336.0" layoutY="620.0" mnemonicParsing="false" onAction="#registrarArtista" prefHeight="37.0" prefWidth="130.0" text="Registrar Artista" />
+                        <Button fx:id="borrarArtistaBtn" layoutX="671.0" layoutY="620.0" mnemonicParsing="false" onAction="#borrarArtista" prefHeight="37.0" prefWidth="130.0" text="Borrrar Artista" />
+                        <Button fx:id="editarArtistaBtn" layoutX="504.0" layoutY="620.0" mnemonicParsing="false" onAction="#editarArtista" prefHeight="37.0" prefWidth="130.0" text="Editar Artista" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Compositores">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="compositoresTable" layoutX="17.0" layoutY="14.0" prefHeight="588.0" prefWidth="1104.0">
+                           <columns>
+                              <TableColumn fx:id="c_nombre" minWidth="0.0" prefWidth="280.0" text="Nombre" />
+                              <TableColumn fx:id="c_apellido" minWidth="0.0" prefWidth="269.0" text="Apellido" />
+                              <TableColumn fx:id="c_pais" prefWidth="199.0" text="Pais de nacimiento" />
+                              <TableColumn fx:id="c_genero" prefWidth="157.0" text="Genero" />
+                              <TableColumn fx:id="c_edad" prefWidth="114.0" text="Edad" />
+                              <TableColumn fx:id="c_id" prefWidth="84.0" text="ID" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="registrarCompositorBtn" layoutX="337.0" layoutY="618.0" mnemonicParsing="false" onAction="#registrarCompositor" prefHeight="37.0" prefWidth="130.0" text="Registrar Compositor" />
+                        <Button fx:id="borrarCompositorBtn" layoutX="670.0" layoutY="618.0" mnemonicParsing="false" onAction="#borrarCompositor" prefHeight="37.0" prefWidth="130.0" text="Borrrar Compositor" />
+                        <Button fx:id="editarCompositorBtn" layoutX="498.0" layoutY="618.0" mnemonicParsing="false" onAction="#editarCompositor" prefHeight="37.0" prefWidth="130.0" text="Editar Compositor" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Géneros">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="generosTable" layoutX="17.0" layoutY="14.0" prefHeight="588.0" prefWidth="1104.0">
+                           <columns>
+                              <TableColumn fx:id="g_nombre" minWidth="0.0" prefWidth="467.0" text="Nombre" />
+                              <TableColumn fx:id="g_descripcion" prefWidth="559.0" text="Descripcion" />
+                              <TableColumn fx:id="g_id" prefWidth="77.0" text="ID" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="registrarGeneroBtn" layoutX="351.0" layoutY="610.0" mnemonicParsing="false" onAction="#registrarGenero" prefHeight="37.0" prefWidth="130.0" text="Registrar Genero" />
+                        <Button fx:id="borrarGeneroBtn" layoutX="667.0" layoutY="610.0" mnemonicParsing="false" onAction="#borrarGenero" prefHeight="37.0" prefWidth="130.0" text="Borrrar Genero" />
+                        <Button fx:id="editarGeneroBtn" layoutX="504.0" layoutY="610.0" mnemonicParsing="false" onAction="#editarGenero" prefHeight="37.0" prefWidth="130.0" text="Editar Genero" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Álbumes">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="albumesTable" layoutX="17.0" layoutY="14.0" prefHeight="588.0" prefWidth="1104.0">
+                           <columns>
+                              <TableColumn fx:id="ab_nombre" minWidth="0.0" prefWidth="367.0" text="Nombre" />
+                              <TableColumn fx:id="ab_lanzamiento" prefWidth="374.0" text="Fecha de lanzamiento" />
+                              <TableColumn fx:id="ab_id" minWidth="0.0" prefWidth="132.0" text="ID" />
+                              <TableColumn fx:id="ab_img" prefWidth="230.0" text="Imagen" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="registrarArlbumBtn" layoutX="358.0" layoutY="623.0" mnemonicParsing="false" onAction="#registrarAlbum" prefHeight="37.0" prefWidth="130.0" text="Registrar Album" />
+                        <Button fx:id="borrarAlbumBtn" layoutX="653.0" layoutY="623.0" mnemonicParsing="false" onAction="#borrarAlbum" prefHeight="37.0" prefWidth="130.0" text="Borrrar Artista" />
+                        <Button fx:id="editarAlbumBtn" layoutX="504.0" layoutY="623.0" mnemonicParsing="false" onAction="#editarAlbum" prefHeight="37.0" prefWidth="130.0" text="Editar Album" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Listas de Reproducción">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="listasTable" layoutX="29.0" layoutY="15.0" prefHeight="588.0" prefWidth="575.0">
+                           <columns>
+                              <TableColumn fx:id="l_nombre" minWidth="0.0" prefWidth="110.0" text="Nombre" />
+                              <TableColumn fx:id="l_creacion" prefWidth="142.0" text="Fecha de creación" />
+                              <TableColumn fx:id="l_calificacion" prefWidth="121.0" text="Calificación" />
+                              <TableColumn fx:id="l_creador" prefWidth="102.0" text="Creador" />
+                              <TableColumn fx:id="l_id" minWidth="0.0" prefWidth="99.0" text="ID" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="registrarListaBtn" layoutX="242.0" layoutY="627.0" mnemonicParsing="false" onAction="#registrarLista" prefHeight="37.0" prefWidth="211.0" text="Registrar Lista de Reproducción" />
+                        <Button fx:id="borrarListaBtn" layoutX="680.0" layoutY="627.0" mnemonicParsing="false" onAction="#borrarLista" prefHeight="37.0" prefWidth="191.0" text="Borrar Lista de Reprodución" />
+                        <Button fx:id="editarListaBtn" layoutX="476.0" layoutY="627.0" mnemonicParsing="false" onAction="#editarLista" prefHeight="37.0" prefWidth="187.0" text="Editar Lista de Reproducciń" />
+                        <TableView fx:id="table_canciones_lista" layoutX="621.0" layoutY="17.0" prefHeight="583.0" prefWidth="501.0">
+                          <columns>
+                            <TableColumn fx:id="t_cancion_lista_nombre" prefWidth="197.0" text="Nombre" />
+                            <TableColumn fx:id="t_cancion_lista_artista" prefWidth="189.0" text="Artista" />
+                              <TableColumn fx:id="t_cancion_lista_id" prefWidth="114.0" text="ID" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Canciones">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="cancionesTable" layoutX="17.0" layoutY="14.0" prefHeight="588.0" prefWidth="1104.0">
+                           <columns>
+                              <TableColumn fx:id="cn_nombre" prefWidth="169.0" text="Nombre" />
+                              <TableColumn fx:id="cn_artista" minWidth="0.0" prefWidth="142.0" text="Artista" />
+                              <TableColumn fx:id="cn_album" prefWidth="131.0" text="Album" />
+                              <TableColumn fx:id="cn_compositor" prefWidth="148.0" text="Compositor" />
+                              <TableColumn fx:id="cn_genero" prefWidth="118.0" text="Genero" />
+                              <TableColumn fx:id="cn_lanzamiento" prefWidth="147.0" text="Fecha de Lanzamiento" />
+                              <TableColumn fx:id="cn_precio" prefWidth="73.0" text="Precio" />
+                              <TableColumn fx:id="cn_id" prefWidth="63.0" text="ID" />
+                              <TableColumn fx:id="cn_creador" prefWidth="111.0" text="Creador" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="registrarCancionBtn" layoutX="356.0" layoutY="616.0" mnemonicParsing="false" onAction="#registrarCancion" prefHeight="37.0" prefWidth="130.0" text="Registrar Canción" />
+                        <Button fx:id="borrarCancionBtn" layoutX="648.0" layoutY="616.0" mnemonicParsing="false" onAction="#borrarCancion" prefHeight="37.0" prefWidth="130.0" text="Borra Canción" />
+                        <Button fx:id="editarCancionBtn" layoutX="504.0" layoutY="616.0" mnemonicParsing="false" onAction="#editarCancion" prefHeight="37.0" prefWidth="130.0" text="Editar Canción" />
+                        <Button fx:id="agregarCancion" layoutX="434.0" layoutY="669.0" mnemonicParsing="false" onAction="#agregarCancion" prefHeight="37.0" prefWidth="270.0" text="Agregar Canción a Lista de Reproducción" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Button fx:id="tiendaBtn" layoutX="1026.0" layoutY="14.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="83.0" text="Tienda">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="fotoImg" fitHeight="51.0" fitWidth="52.0" layoutX="14.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

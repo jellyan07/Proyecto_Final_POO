@@ -37,9 +37,9 @@ public class UsuarioDAO {
         buildSentence.append(material.getEdad());
         buildSentence.append(",'");
         buildSentence.append(material.getPais());
-        buildSentence.append("',");
+        buildSentence.append("','");
         buildSentence.append(material.getImg());
-        buildSentence.append(")");
+        buildSentence.append("')");
         System.out.println(buildSentence.toString());
         stmt.execute(buildSentence.toString());
     }

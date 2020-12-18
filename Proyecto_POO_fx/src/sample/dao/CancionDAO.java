@@ -1,9 +1,6 @@
 package sample.dao;
 
-import sample.entidades.Album;
-import sample.entidades.Artista;
-import sample.entidades.Cancion;
-import sample.entidades.Compositor;
+import sample.entidades.*;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -130,5 +127,17 @@ public class CancionDAO {
         buildSentence.append(";");
         System.out.println(buildSentence.toString());
         stmt.execute(buildSentence.toString());
+    }
+
+    public List<Cancion> findAllUsuario(Usuario usuario) throws SQLException {
+        ArrayList<Cancion> listOfResults = new ArrayList<>();
+        Statement stmt = cnx.createStatement();
+        ResultSet result = stmt.executeQuery("select * from tusuario-cancion where idusuario = " + usuario.getId());
+        while(result.next()){
+            Cancion uno = new Cancion();
+            uno = findCancionByID(result.getInt("idcancion"));
+            listOfResults.add(uno);
+        }
+        return listOfResults;
     }
 }

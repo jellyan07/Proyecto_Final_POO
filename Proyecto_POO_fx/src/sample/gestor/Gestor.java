@@ -194,6 +194,10 @@ public class Gestor {
         return canciones.findAll();
     }
 
+    public List<Cancion> listCancionesUsuario() throws SQLException {
+        return canciones.findAllUsuario(getUsuario());
+    }
+
     public Cancion encontrarCancionPorID(int id) throws SQLException {
         Cancion cancion = canciones.findCancionByID(id);
         return cancion;
@@ -242,7 +246,7 @@ public class Gestor {
 
     //LISTAS
 
-    public void crearLista(int creador, String nombre, String fecha_de_creacion, int calificacion) throws SQLException {
+    public void crearLista(int creador, String nombre, String fecha_de_creacion, int calificacion, List<Cancion> canciones) throws SQLException {
         Date creacion = null;
         try {
             creacion = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_de_creacion);
@@ -250,11 +254,15 @@ public class Gestor {
             e.printStackTrace();
         }
         ListadeReproduccion lista = new ListadeReproduccion(creador, nombre, creacion, calificacion);
-        listas.save(lista);
+        listas.save(lista, canciones);
     }
 
     public List<ListadeReproduccion> listListas() throws SQLException {
         return listas.findAll();
+    }
+
+    public List<Cancion> listCancionesLista(ListadeReproduccion lista_seleccionada) throws SQLException {
+        return listas.findSongsfromList(lista_seleccionada);
     }
 
     public ListadeReproduccion encontrarListaPorID(int id) throws SQLException {
