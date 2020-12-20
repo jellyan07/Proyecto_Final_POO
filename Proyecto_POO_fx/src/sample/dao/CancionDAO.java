@@ -27,10 +27,10 @@ public class CancionDAO {
         this.compositorDAO = new CompositorDAO(cnx);
     }
 
-    public void save(Cancion material) throws SQLException {
+    public StringBuilder save(Cancion material) throws SQLException {
         Statement stmt = cnx.createStatement();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        StringBuilder buildSentence = new StringBuilder("insert into cancion (nombre, artista, genero, compositor, fecha_lanzamiento, album, creador, precio, tipo, calificacion)");
+        StringBuilder buildSentence = new StringBuilder("insert into cancion (nombre, artista, genero, compositor, fecha_lanzamiento, album, creador, precio, tipo, calificacion, link, img)");
         buildSentence.append(" values ('");
         buildSentence.append(material.getNombre());
         buildSentence.append("',");
@@ -51,9 +51,14 @@ public class CancionDAO {
         buildSentence.append(material.isTienda());
         buildSentence.append(",");
         buildSentence.append(material.getCalificacion());
-        buildSentence.append(")");
+        buildSentence.append(",'");
+        buildSentence.append(material.getLink());
+        buildSentence.append("','");
+        buildSentence.append(material.getImg());
+        buildSentence.append("')");
         System.out.println(buildSentence.toString());
         stmt.execute(buildSentence.toString());
+        return buildSentence;
     }
 
     public List<Cancion> findAll() throws SQLException {
@@ -132,7 +137,7 @@ public class CancionDAO {
     public List<Cancion> findAllUsuario(Usuario usuario) throws SQLException {
         ArrayList<Cancion> listOfResults = new ArrayList<>();
         Statement stmt = cnx.createStatement();
-        ResultSet result = stmt.executeQuery("select * from tusuario-cancion where idusuario = " + usuario.getId());
+        ResultSet result = stmt.executeQuery("select * from tusuario_cancion where idusuario = " + usuario.getId());
         while(result.next()){
             Cancion uno = new Cancion();
             uno = findCancionByID(result.getInt("idcancion"));
@@ -140,4 +145,21 @@ public class CancionDAO {
         }
         return listOfResults;
     }
+
+    public void saveToUsuario(Cancion cancion) throws SQLException {
+        StringBuilder buildSentence = save(cancion);
+        Statement insertCmd = null;
+        int key = -1;
+        try {
+            insertCmd = cnx.createStatement();
+            insertCmd.execute(String.valueOf(buildSentence),Statement.RETURN_GENERATED_KEYS);
+            ResultSet generatedKeys = insertCmd.getGeneratedKeys();
+            while (generatedKeys.next()) {
+                key = generatedKeys.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

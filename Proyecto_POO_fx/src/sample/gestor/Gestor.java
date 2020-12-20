@@ -1,5 +1,6 @@
 package sample.gestor;
 
+import javafx.scene.control.TextField;
 import sample.dao.*;
 import sample.entidades.*;
 
@@ -8,7 +9,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +18,7 @@ public class Gestor {
     private Connection conection;
     Configuracion conf;
 
-    private Usuario usuario;
+    private static Usuario usuario;
     private ArtistaDAO artistas;
     private UsuarioDAO usuarios;
     private CompositorDAO compositores;
@@ -179,7 +179,18 @@ public class Gestor {
 
     //CANCIONES
 
-    public void crearCancion(String nombre, Artista artista, Genero genero, Compositor compositor, String fecha_de_lanzamiento, Album album, double precio, int creador, boolean tienda, int calificacion) throws SQLException {
+    public void crearCancion(String nombre, Artista artista, Genero genero, Compositor compositor, String fecha_de_lanzamiento, Album album, double precio, int creador, boolean tienda, int calificacion, String img, String link) throws SQLException {
+        Date lanzamiento = null;
+        try {
+            lanzamiento = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_de_lanzamiento);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Cancion cancion = new Cancion(nombre, artista, genero, compositor, lanzamiento, album, precio, creador, tienda, calificacion, img, link);
+        canciones.save(cancion);
+    }
+
+    public void editarCancion(String nombre, Artista artista, Genero genero, Compositor compositor, String fecha_de_lanzamiento, Album album, double precio, int creador, boolean tienda, int calificacion, Cancion cancion_cambiar) throws SQLException {
         Date lanzamiento = null;
         try {
             lanzamiento = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_de_lanzamiento);
@@ -187,15 +198,15 @@ public class Gestor {
             e.printStackTrace();
         }
         Cancion cancion = new Cancion(nombre, artista, genero, compositor, lanzamiento, album, precio, creador, tienda, calificacion);
-        canciones.save(cancion);
+        canciones.edit(cancion, cancion_cambiar);
     }
 
     public List<Cancion> listCanciones() throws SQLException {
         return canciones.findAll();
     }
 
-    public List<Cancion> listCancionesUsuario() throws SQLException {
-        return canciones.findAllUsuario(getUsuario());
+    public List<Cancion> listCancionesUsuario(Usuario usuario) throws SQLException {
+        return canciones.findAllUsuario(usuario);
     }
 
     public Cancion encontrarCancionPorID(int id) throws SQLException {
@@ -274,4 +285,9 @@ public class Gestor {
         listas.delete(lista_seleccionada);
     }
 
+    public void agregarALista(ListadeReproduccion lista_input, List<Cancion> canciones) throws SQLException {
+        for (Cancion cancion:canciones) {
+            listas.saveCancionToLista(cancion, lista_input.getId());
+        }
+    }
 }

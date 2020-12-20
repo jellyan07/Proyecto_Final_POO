@@ -14,6 +14,7 @@ import sample.entidades.*;
 import sample.gestor.Gestor;
 
 import java.io.IOException;
+import java.net.CacheRequest;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
@@ -57,9 +58,11 @@ public class EditCancion {
     Album album_input = null;
     Artista artista_input = null;
     Compositor compositor_input = null;
+    Cancion cancion_cambiar = null;
 
     public void initialize (Cancion cancion) throws SQLException {
 
+        cancion_cambiar = cancion;
         inputPrecio.disableProperty().bind(checkBox.selectedProperty().not());
         inputCalificacion.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 1,1));
         inputCalificacion.setEditable(true);
@@ -148,7 +151,7 @@ public class EditCancion {
             int creador = gestor.getUsuario().getId();
             int calificacion = inputCalificacion.getValue();
 
-            gestor.crearCancion(nombre, artista_input, genero_input, compositor_input, lanzamiento, album_input, precio, creador, checkBox.isSelected(), calificacion);
+            gestor.editarCancion(nombre, artista_input, genero_input, compositor_input, lanzamiento, album_input, precio, creador, checkBox.isSelected(), calificacion, cancion_cambiar);
 
             // get a handle to the stage
             Stage stage = (Stage) registrarBtn.getScene().getWindow();

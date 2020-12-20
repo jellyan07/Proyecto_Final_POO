@@ -20,6 +20,8 @@ public class Cancion {
     private boolean tienda;
     private double precio;
     private int calificacion;
+    private String img;
+    private String link;
 
     /**
      * gert del id
@@ -209,12 +211,25 @@ public class Cancion {
         this.calificacion = calificacion;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
     /**
      * constructor vacío de canción
      */
-
-
-
 
     public Cancion() {
     }
@@ -229,6 +244,21 @@ public class Cancion {
      * @param album
      * @param precio
      */
+
+    public Cancion(String nombre, Artista artista, Genero genero, Compositor compositor, Date fecha_de_lanzamiento, Album album, double precio, int creador, boolean tienda, int calificacion, String img, String link) {
+        this.nombre = nombre;
+        this.artista = artista;
+        this.genero = genero;
+        this.compositor = compositor;
+        this.fecha_de_lanzamiento = fecha_de_lanzamiento;
+        this.album = album;
+        this.precio = precio;
+        this.creador = creador;
+        this.tienda = tienda;
+        this.calificacion = calificacion;
+        this.img = img;
+        this.link = link;
+    }
 
     public Cancion(String nombre, Artista artista, Genero genero, Compositor compositor, Date fecha_de_lanzamiento, Album album, double precio, int creador, boolean tienda, int calificacion) {
         this.nombre = nombre;

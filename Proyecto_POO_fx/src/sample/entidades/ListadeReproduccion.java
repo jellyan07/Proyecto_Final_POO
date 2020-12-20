@@ -134,13 +134,7 @@ public class ListadeReproduccion {
 
     @Override
     public String toString() {
-        return "ListadeReproduccion{" +
-                "id='" + id + '\'' +
-                ", nombre='" + nombre + '\'' +
-                ", fecha_de_creacion='" + fecha_de_creacion + '\'' +
-                ", calificacion=" + calificacion +
-                ", creador=" + creador +
-                '}';
+        return getNombre();
     }
 
     /**

@@ -343,7 +343,7 @@ public class AdminMenu {
         } catch (SQLException | IOException throwables) {
             throwables.printStackTrace();
         }
-        cargar();
+
     }
 
     @FXML
@@ -363,7 +363,7 @@ public class AdminMenu {
         } catch (SQLException | IOException throwables) {
             throwables.printStackTrace();
         }
-        cargar();
+
     }
 
     @FXML
@@ -383,7 +383,7 @@ public class AdminMenu {
         } catch (SQLException | IOException throwables) {
             throwables.printStackTrace();
         }
-        cargar();
+
     }
 
     @FXML
@@ -403,7 +403,7 @@ public class AdminMenu {
         } catch (SQLException | IOException throwables) {
             throwables.printStackTrace();
         }
-        cargar();
+
     }
 
     @FXML
@@ -413,18 +413,15 @@ public class AdminMenu {
 
     @FXML
     void registrarAlbum(ActionEvent event) throws IOException, SQLException {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/RegisterAlbum.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setScene(new Scene(root1));
-            stage.show();
-        } catch (IOException throwables) {
-            throwables.printStackTrace();
-        }
-        cargar();
+        Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+        Parent ruta = FXMLLoader.load(getClass().getResource("../ui/RegisterAlbum.fxml"));
+
+        Scene nueva_escena = new Scene(ruta);
+        escenaPrincipal.hide();
+
+        escenaPrincipal.setScene(nueva_escena);
+        escenaPrincipal.show();
     }
 
     @FXML

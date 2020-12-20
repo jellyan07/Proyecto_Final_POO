@@ -7,18 +7,22 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.apache.tika.metadata.Metadata;
+import org.apache.tika.parser.Parser;
 import sample.entidades.*;
 import sample.gestor.Gestor;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
+
 
 public class RegisterCancion {
 
@@ -53,6 +57,15 @@ public class RegisterCancion {
 
     @FXML
     private Spinner<Integer> inputCalificacion;
+
+
+    @FXML
+    private Button cancionBtn;
+    String inputImg = null;
+
+    @FXML
+    private Button imagenBtn;
+    String inputCancion = null;
 
     Genero genero_input = null;
     Album album_input = null;
@@ -143,12 +156,17 @@ public class RegisterCancion {
             int calificacion = inputCalificacion.getValue();
 
 
-            gestor.crearCancion(nombre, artista_input, genero_input, compositor_input, lanzamiento, album_input, precio, creador, checkBox.isSelected(), calificacion);
+            gestor.crearCancion(nombre, artista_input, genero_input, compositor_input, lanzamiento, album_input, precio, creador, checkBox.isSelected(), calificacion, inputImg, inputCancion);
 
-            // get a handle to the stage
-            Stage stage = (Stage) registrarBtn.getScene().getWindow();
-            // do what you have to do
-            stage.close();
+            Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+            Parent ruta = FXMLLoader.load(getClass().getResource("../ui/AdminMenu.fxml"));
+
+            Scene nueva_escena = new Scene(ruta);
+            escenaPrincipal.hide();
+
+            escenaPrincipal.setScene(nueva_escena);
+            escenaPrincipal.show();
         } else {
             // Espacios en blanco
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/AlertBox.fxml"));
@@ -171,11 +189,38 @@ public class RegisterCancion {
     private Button backBtn;
 
     @FXML
-    void back(ActionEvent event) {
-        // get a handle to the stage
-        Stage stage = (Stage) backBtn.getScene().getWindow();
-        // do what you have to do
-        stage.close();
+    void back(ActionEvent event) throws IOException {
+        Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+        Parent ruta = FXMLLoader.load(getClass().getResource("../ui/AdminMenu.fxml"));
+
+        Scene nueva_escena = new Scene(ruta);
+        escenaPrincipal.hide();
+
+        escenaPrincipal.setScene(nueva_escena);
+        escenaPrincipal.show();
+    }
+
+    @FXML
+    void singleFileChooserCancion(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Audio Files", "*.wav", "*.mp3", "*.aac"));
+        File f = fc.showOpenDialog(null);
+        if(f != null) {
+            inputCancion = f.getAbsolutePath();
+            System.out.println(inputCancion);
+        }
+    }
+
+    @FXML
+    void singleFileChooserImagen(ActionEvent event) {
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png"));
+        File f = fc.showOpenDialog(null);
+        if(f != null) {
+            inputImg = f.getAbsolutePath();
+            System.out.println(inputImg);
+        }
     }
 
 }

@@ -3,6 +3,7 @@ package sample.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -93,10 +94,15 @@ public class RegisterUsuario {
             gestor.crearUsuario(nombre, apellido1, apellido2, correo, password, nombre_usuario, edad, pais, img);
 
 
-            // get a handle to the stage
-            Stage stage = (Stage) registrarBtn.getScene().getWindow();
-            // do what you have to do
-            stage.close();
+            Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+            Parent ruta = FXMLLoader.load(getClass().getResource("../ui/sampleUsuario.fxml"));
+
+            Scene nueva_escena = new Scene(ruta);
+            escenaPrincipal.hide();
+
+            escenaPrincipal.setScene(nueva_escena);
+            escenaPrincipal.show();
         } else {
             // Espacios en blanco
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/AlertBox.fxml"));
@@ -115,11 +121,16 @@ public class RegisterUsuario {
     private Button backBtn;
 
     @FXML
-    void back(ActionEvent event) {
-        // get a handle to the stage
-        Stage stage = (Stage) backBtn.getScene().getWindow();
-        // do what you have to do
-        stage.close();
+    void back(ActionEvent event) throws IOException {
+        Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+        Parent ruta = FXMLLoader.load(getClass().getResource("../ui/sampleUsuario.fxml"));
+
+        Scene nueva_escena = new Scene(ruta);
+        escenaPrincipal.hide();
+
+        escenaPrincipal.setScene(nueva_escena);
+        escenaPrincipal.show();
     }
 
     @FXML
@@ -128,7 +139,7 @@ public class RegisterUsuario {
         fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.jpg", "*.png"));
         File f = fc.showOpenDialog(null);
         if(f != null) {
-            inputImg = f.getAbsolutePath();
+            inputImg = f.toURI().toString();
         }
     }
 }

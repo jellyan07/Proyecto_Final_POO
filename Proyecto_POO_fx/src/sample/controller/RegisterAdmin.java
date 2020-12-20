@@ -66,10 +66,15 @@ public class RegisterAdmin {
             gestor.crearAdmin(nombre, apellido1, apellido2, correo, password, nombre_usuario, img);
 
 
-            // get a handle to the stage
-            Stage stage = (Stage) registrarBtn.getScene().getWindow();
-            // do what you have to do
-            stage.close();
+            Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+            Parent ruta = FXMLLoader.load(getClass().getResource("../ui/AdminMenu.fxml"));
+
+            Scene nueva_escena = new Scene(ruta);
+            escenaPrincipal.hide();
+
+            escenaPrincipal.setScene(nueva_escena);
+            escenaPrincipal.show();
         } else {
             // Espacios en blanco
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/AlertBox.fxml"));
@@ -88,10 +93,15 @@ public class RegisterAdmin {
     private Button backBtn;
 
     @FXML
-    void back(ActionEvent event) {
-        // get a handle to the stage
-        Stage stage = (Stage) backBtn.getScene().getWindow();
-        // do what you have to do
-        stage.close();
+    void back(ActionEvent event) throws IOException {
+        Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+        Parent ruta = FXMLLoader.load(getClass().getResource("../ui/AdminMenu.fxml"));
+
+        Scene nueva_escena = new Scene(ruta);
+        escenaPrincipal.hide();
+
+        escenaPrincipal.setScene(nueva_escena);
+        escenaPrincipal.show();
     }
 }

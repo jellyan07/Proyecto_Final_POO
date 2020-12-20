@@ -109,7 +109,8 @@ public class Controller {
     void openAdminMenuWindow(ActionEvent event) throws IOException {
         Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
 
-        Parent ruta = FXMLLoader.load(getClass().getResource("../ui/AdminMenu.fxml"));
+        Parent ruta = null;
+        ruta = FXMLLoader.load(getClass().getResource("../ui/AdminMenu.fxml"));
 
         Scene nueva_escena = new Scene(ruta);
         escenaPrincipal.hide();

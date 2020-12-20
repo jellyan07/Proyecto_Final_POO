@@ -23,7 +23,7 @@ import java.util.List;
 
 public class ControllerUsuario {
 
-    Gestor gestor = new Gestor();
+    private Gestor gestor = new Gestor();
 
     @FXML
     private AnchorPane rootPane;
@@ -48,6 +48,7 @@ public class ControllerUsuario {
 
     @FXML
     void login(ActionEvent event) throws IOException, SQLException {
+
         if(!userInput.getText().isEmpty() && !passInput.getText().isEmpty() && userInput != null && passInput != null) {
             try{
                 String userNum = userInput.getText();
@@ -60,13 +61,25 @@ public class ControllerUsuario {
                             //Ir al menú principal
                             System.out.println("Usuario Correcto");
                             // Usuario no existe
-                            openUsuarioMenuWindow(event);
                             gestor.setUsuario(usuario);
+                            System.out.println(gestor.getUsuario());
+                            openUsuarioMenuWindow(event);
                         } else {
                             //Contraseña incorrecta
                             System.out.println("Contraseña incorrecta");
                         }
                     }
+                }
+                if(!encontrado) {
+                    // Espacios en blanco
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/AlertBox.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.initStyle(StageStyle.UNDECORATED);
+                    stage.setTitle("Usuario o contraseña incorrecta");
+                    stage.setScene(new Scene(root1));
+                    stage.show();
                 }
 
             } catch(NumberFormatException num) {
@@ -93,13 +106,15 @@ public class ControllerUsuario {
     @FXML
     void openRegisterWindow(ActionEvent event) throws IOException {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../ui/RegisterUsuario.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setScene(new Scene(root1));
-            stage.show();
+            Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+            Parent ruta = FXMLLoader.load(getClass().getResource("../ui/RegisterUsuario.fxml"));
+
+            Scene nueva_escena = new Scene(ruta);
+            escenaPrincipal.hide();
+
+            escenaPrincipal.setScene(nueva_escena);
+            escenaPrincipal.show();
         } catch (IOException throwables) {
             throwables.printStackTrace();
         }
