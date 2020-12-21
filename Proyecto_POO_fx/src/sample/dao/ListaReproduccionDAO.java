@@ -39,7 +39,6 @@ public class ListaReproduccionDAO {
         buildSentence.append(material.getCreador());
         buildSentence.append(")");
         System.out.println(buildSentence.toString());
-        stmt.execute(buildSentence.toString());
         Statement insertCmd = null;
         int key = -1;
         try {

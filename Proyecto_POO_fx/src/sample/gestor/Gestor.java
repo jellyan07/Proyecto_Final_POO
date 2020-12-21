@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +20,7 @@ public class Gestor {
     Configuracion conf;
 
     private static Usuario usuario;
+    private static ArrayList<Cancion> queue;
     private ArtistaDAO artistas;
     private UsuarioDAO usuarios;
     private CompositorDAO compositores;
@@ -64,6 +66,14 @@ public class Gestor {
        return usuario;
     }
 
+    public static ArrayList<Cancion> getQueue() {
+        return queue;
+    }
+
+    public static void setQueue(ArrayList<Cancion> queue) {
+        Gestor.queue = queue;
+    }
+
     // ADMIN
 
     public void crearAdmin(String nombre, String apellido1, String apellido2, String correo, String password, String nombre_usuario, String img) throws SQLException {
@@ -89,6 +99,10 @@ public class Gestor {
     public Usuario encontrarUsuarioPorID(int id) throws SQLException {
         Usuario usuario = usuarios.findUsuarioByID(id);
         return usuario;
+    }
+
+    public void editarUsuario(String nombre, String apellido1, String apellido2, String correo, String nombre_usuario, int edad, String pais, String img) throws SQLException {
+        usuarios.editUsuario(nombre, apellido1, apellido2, correo, nombre_usuario, edad, pais, img, usuario.getId());
     }
 
     //ARTISTAS
@@ -190,6 +204,17 @@ public class Gestor {
         canciones.save(cancion);
     }
 
+    public void crearCancionUsuario(String nombre, Artista artista, Genero genero, Compositor compositor, String fecha_de_lanzamiento, Album album, double precio, int creador, boolean tienda, int calificacion, String img, String link) throws SQLException {
+        Date lanzamiento = null;
+        try {
+            lanzamiento = new SimpleDateFormat("yyyy-MM-dd").parse(fecha_de_lanzamiento);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Cancion cancion = new Cancion(nombre, artista, genero, compositor, lanzamiento, album, precio, creador, tienda, calificacion, img, link);
+        canciones.saveToUsuario(cancion);
+    }
+
     public void editarCancion(String nombre, Artista artista, Genero genero, Compositor compositor, String fecha_de_lanzamiento, Album album, double precio, int creador, boolean tienda, int calificacion, Cancion cancion_cambiar) throws SQLException {
         Date lanzamiento = null;
         try {
@@ -216,6 +241,10 @@ public class Gestor {
 
     public void deleteCancion(Cancion cancion_seleccionada) throws SQLException {
         canciones.delete(cancion_seleccionada);
+    }
+
+    public void comprar(Cancion cancion, Usuario usuario) throws SQLException {
+        canciones.comprar(cancion, usuario);
     }
 
     //ALBUMES

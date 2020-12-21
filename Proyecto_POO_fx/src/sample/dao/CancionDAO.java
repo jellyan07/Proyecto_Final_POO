@@ -27,7 +27,7 @@ public class CancionDAO {
         this.compositorDAO = new CompositorDAO(cnx);
     }
 
-    public StringBuilder save(Cancion material) throws SQLException {
+    public void save(Cancion material) throws SQLException {
         Statement stmt = cnx.createStatement();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         StringBuilder buildSentence = new StringBuilder("insert into cancion (nombre, artista, genero, compositor, fecha_lanzamiento, album, creador, precio, tipo, calificacion, link, img)");
@@ -58,7 +58,6 @@ public class CancionDAO {
         buildSentence.append("')");
         System.out.println(buildSentence.toString());
         stmt.execute(buildSentence.toString());
-        return buildSentence;
     }
 
     public List<Cancion> findAll() throws SQLException {
@@ -147,7 +146,35 @@ public class CancionDAO {
     }
 
     public void saveToUsuario(Cancion cancion) throws SQLException {
-        StringBuilder buildSentence = save(cancion);
+        Statement stmt = cnx.createStatement();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        StringBuilder buildSentence = new StringBuilder("insert into cancion (nombre, artista, genero, compositor, fecha_lanzamiento, album, creador, precio, tipo, calificacion, link, img)");
+        buildSentence.append(" values ('");
+        buildSentence.append(cancion.getNombre());
+        buildSentence.append("',");
+        buildSentence.append(cancion.getArtista().getID());
+        buildSentence.append(",");
+        buildSentence.append(cancion.getGenero().getID());
+        buildSentence.append(",");
+        buildSentence.append(cancion.getCompositor().getID());
+        buildSentence.append(",'");
+        buildSentence.append(dateFormat.format(cancion.getFecha_de_lanzamiento()));
+        buildSentence.append("',");
+        buildSentence.append(cancion.getAlbum().getID());
+        buildSentence.append(",");
+        buildSentence.append(cancion.getCreador());
+        buildSentence.append(",");
+        buildSentence.append(cancion.getPrecio());
+        buildSentence.append(",");
+        buildSentence.append(cancion.isTienda());
+        buildSentence.append(",");
+        buildSentence.append(cancion.getCalificacion());
+        buildSentence.append(",'");
+        buildSentence.append(cancion.getLink());
+        buildSentence.append("','");
+        buildSentence.append(cancion.getImg());
+        buildSentence.append("')");
+        System.out.println(buildSentence.toString());
         Statement insertCmd = null;
         int key = -1;
         try {
@@ -160,6 +187,40 @@ public class CancionDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        buildSentence = new StringBuilder("insert into tusuario_cancion (idusuario, idcancion)");
+        buildSentence.append(" values (");
+        buildSentence.append(cancion.getCreador());
+        buildSentence.append(" , ");
+        buildSentence.append(key);
+        buildSentence.append(")");
+        System.out.println(buildSentence.toString());
+        stmt.execute(buildSentence.toString());
     }
 
+    public ArrayList<Cancion> tiendaUsuario(int idusuario) throws SQLException {
+        ArrayList<Cancion> listOfResults = new ArrayList<>();
+        Statement stmt = cnx.createStatement();
+        StringBuilder buildSentence = new StringBuilder("select idcancion from cancion MINUS select idcancion from cancion where idcancion in ( select idcancion from tusuario_cancion where idusuario = ");
+        buildSentence.append(idusuario);
+        buildSentence.append(";");
+        stmt.execute(buildSentence.toString());
+        ResultSet result = stmt.executeQuery(buildSentence.toString());
+        while(result.next()){
+            Cancion uno = new Cancion();
+            uno = findCancionByID(result.getInt("idcancion"));
+            listOfResults.add(uno);
+        }
+        return listOfResults;
+    }
+
+    public void comprar(Cancion cancion, Usuario usuario) throws SQLException {
+        Statement stmt = cnx.createStatement();
+        StringBuilder buildSentence = new StringBuilder("insert into tusuario_cancion (idusuario, idcancion) values (");
+        buildSentence.append(usuario.getId());
+        buildSentence.append(",");
+        buildSentence.append(cancion.getID());
+        buildSentence.append(");");
+        System.out.println(buildSentence.toString());
+        stmt.execute(buildSentence.toString());
+    }
 }

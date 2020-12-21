@@ -105,6 +105,22 @@ public class UsuarioMenu {
     private Button borrarCancion;
 
     @FXML
+    private Button backBtn;
+
+    @FXML
+    void back(ActionEvent event) throws IOException {
+        Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+        Parent ruta = FXMLLoader.load(getClass().getResource("../ui/MainMenu.fxml"));
+
+        Scene nueva_escena = new Scene(ruta);
+        escenaPrincipal.hide();
+
+        escenaPrincipal.setScene(nueva_escena);
+        escenaPrincipal.show();
+    }
+
+    @FXML
     void borrar(ActionEvent event) {
 
     }
@@ -119,7 +135,7 @@ public class UsuarioMenu {
         this.queue.getItems().clear();
         ObservableList<Cancion> cancionesBusqueda = FXCollections.observableArrayList();
         if (inputCancion != null) {
-            for(Cancion cancion : getCanciones()) {
+            for(Cancion cancion : gestor.getQueue()) {
                 if(cancion.getNombre().contains(inputCancion.getText())) {
                     cancionesBusqueda.add(cancion);
                 }
@@ -128,7 +144,7 @@ public class UsuarioMenu {
         } else {
             queueCancion.setCellValueFactory(new PropertyValueFactory<>("nombre"));
             queueArtista.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getArtista().getNombre()));
-            this.queue.setItems(getCanciones());
+            this.queue.setItems(getCancionesQueue());
         }
     }
 
@@ -160,15 +176,17 @@ public class UsuarioMenu {
 
     }
 
-    @FXML
-    void editarCancion(ActionEvent event) {
-
-    }
-
     public void initialize () throws SQLException {
         queueCancion.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         queueArtista.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getArtista().getNombre()));
-        this.queue.setItems(getCanciones());
+        listas.setOnMouseClicked(event -> {
+            ListadeReproduccion lista_seleccionada = listas.getSelectionModel().getSelectedItem();
+            try {
+                queue.setItems(getCancionesLista(lista_seleccionada));
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        });
 
 
         File file = new File(gestor.getUsuario().getImg());
@@ -176,9 +194,56 @@ public class UsuarioMenu {
         foto.setImage(image);
     }
 
-    public ObservableList<Cancion> getCanciones() throws SQLException {
+    private ObservableList<Cancion> getCancionesLista(ListadeReproduccion lista_seleccionada) throws SQLException {
         ObservableList<Cancion> canciones = FXCollections.observableArrayList();
-        for (Cancion cancion: gestor.listCancionesUsuario(gestor.getUsuario())) {
+        for (Cancion cancion: gestor.listCancionesLista(lista_seleccionada)) {
+            canciones.add(cancion);
+        }
+        return canciones;
+    }
+
+    @FXML
+    void biblioteca(ActionEvent event) throws IOException {
+        Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+        Parent ruta = FXMLLoader.load(getClass().getResource("../ui/Biblioteca.fxml"));
+
+        Scene nueva_escena = new Scene(ruta);
+        escenaPrincipal.hide();
+
+        escenaPrincipal.setScene(nueva_escena);
+        escenaPrincipal.show();
+    }
+
+    @FXML
+    void perfil(ActionEvent event) throws IOException {
+        Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+        Parent ruta = FXMLLoader.load(getClass().getResource("../ui/EditUsuario.fxml"));
+
+        Scene nueva_escena = new Scene(ruta);
+        escenaPrincipal.hide();
+
+        escenaPrincipal.setScene(nueva_escena);
+        escenaPrincipal.show();
+    }
+
+    @FXML
+    void tienda(ActionEvent event) throws IOException {
+        Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+        Parent ruta = FXMLLoader.load(getClass().getResource("../ui/Tienda.fxml"));
+
+        Scene nueva_escena = new Scene(ruta);
+        escenaPrincipal.hide();
+
+        escenaPrincipal.setScene(nueva_escena);
+        escenaPrincipal.show();
+    }
+
+    public ObservableList<Cancion> getCancionesQueue() throws SQLException {
+        ObservableList<Cancion> canciones = FXCollections.observableArrayList();
+        for (Cancion cancion: gestor.getQueue()) {
             canciones.add(cancion);
         }
         return canciones;

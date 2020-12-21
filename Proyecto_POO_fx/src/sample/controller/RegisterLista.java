@@ -29,7 +29,7 @@ public class RegisterLista {
     private Gestor gestor = new Gestor();
 
     @FXML
-    private TextField inputNombre;
+    private TextField listaNombre;
 
     @FXML
     private Button registrarBtn;
@@ -73,12 +73,12 @@ public class RegisterLista {
     }
 
     @FXML
-    void registrarAlbum(ActionEvent event) throws SQLException, IOException {
+    void registrarlista(ActionEvent event) throws SQLException, IOException {
 
-        if(inputNombre.getText() != null &&
+        if(listaNombre.getText() != null &&
                 t_canciones_elegir.getSelectionModel().getSelectedItems() != null) {
 
-            String nombre = inputNombre.getText();
+            String nombre = listaNombre.getText();
             int creador = 101;
             String fecha = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             List<Cancion> canciones = getItems(t_canciones_elegir.getSelectionModel().getSelectedItems());

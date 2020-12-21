@@ -19,9 +19,9 @@ import sample.gestor.Gestor;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
-public class Tienda {
-
+public class Biblioteca {
     Gestor gestor = new Gestor();
 
     @FXML
@@ -88,17 +88,18 @@ public class Tienda {
 
     @FXML
     void comprar(ActionEvent event) throws SQLException {
-        Cancion cancion_seleccionada = cancionesTable.getSelectionModel().getSelectedItem();
-        System.out.println(cancion_seleccionada.toString());
-        gestor.comprar(cancion_seleccionada, gestor.getUsuario());
+        List<Cancion> canciones = cancionesTable.getSelectionModel().getSelectedItems();
+        System.out.println(canciones.toString());
+        for (Cancion cancion: canciones) {
+            gestor.getQueue().add(cancion);
+        }
+
     }
 
     public ObservableList<Cancion> getCanciones() throws SQLException {
         ObservableList<Cancion> canciones = FXCollections.observableArrayList();
-        for (Cancion cancion: gestor.listCanciones()) {
-            if(cancion.isTienda()){
-                canciones.add(cancion);
-            }
+        for (Cancion cancion: gestor.listCancionesUsuario(gestor.getUsuario())) {
+            canciones.add(cancion);
         }
         return canciones;
     }

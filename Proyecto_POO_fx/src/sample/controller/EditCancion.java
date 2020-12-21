@@ -67,7 +67,7 @@ public class EditCancion {
         inputCalificacion.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 5, 1,1));
         inputCalificacion.setEditable(true);
         inputCalificacion.getValueFactory().setValue(cancion.getCalificacion());
-
+        inputNombre.setText(cancion.getNombre());
         // Generos
 
         if(gestor.listGeneros() == null || gestor.listGeneros().isEmpty()) {

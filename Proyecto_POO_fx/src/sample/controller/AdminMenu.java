@@ -610,4 +610,20 @@ public class AdminMenu {
         return canciones;
     }
 
+    @FXML
+    private Button backBtn;
+
+    @FXML
+    void back(ActionEvent event) throws IOException {
+        Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
+
+        Parent ruta = FXMLLoader.load(getClass().getResource("../ui/MainMenu.fxml"));
+
+        Scene nueva_escena = new Scene(ruta);
+        escenaPrincipal.hide();
+
+        escenaPrincipal.setScene(nueva_escena);
+        escenaPrincipal.show();
+    }
+
 }

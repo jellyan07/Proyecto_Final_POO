@@ -12,17 +12,17 @@
 
 <AnchorPane prefHeight="422.0" prefWidth="727.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controller.UsuarioMenu">
    <children>
-      <Button fx:id="tiendaBtn" layoutX="148.0" layoutY="15.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="119.0" text="Tienda">
+      <Button fx:id="tiendaBtn" layoutX="148.0" layoutY="15.0" mnemonicParsing="false" onAction="#tienda" prefHeight="51.0" prefWidth="119.0" text="Tienda">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="perfilBtn" layoutX="148.0" layoutY="141.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="119.0" text="Perfil">
+      <Button fx:id="perfilBtn" layoutX="148.0" layoutY="141.0" mnemonicParsing="false" onAction="#perfil" prefHeight="51.0" prefWidth="119.0" text="Perfil">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="bibliotecaBtn" layoutX="148.0" layoutY="78.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="119.0" text="Biblioteca">
+      <Button fx:id="bibliotecaBtn" layoutX="148.0" layoutY="78.0" mnemonicParsing="false" onAction="#biblioteca" prefHeight="51.0" prefWidth="119.0" text="Biblioteca">
          <font>
             <Font size="18.0" />
          </font>
@@ -54,7 +54,7 @@
       <Button fx:id="buscarCancionBtn" layoutX="658.0" layoutY="14.0" mnemonicParsing="false" onAction="#buscarCancion" text="Buscar" />
       <ImageView fx:id="foto" fitHeight="115.0" fitWidth="111.0" layoutX="10.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="crearCancionBtn" layoutX="498.0" layoutY="347.0" mnemonicParsing="false" onAction="#crearCancion" prefHeight="30.0" prefWidth="111.0" text="Registrar Canción" />
-      <Button fx:id="editarCancion" layoutX="610.0" layoutY="347.0" mnemonicParsing="false" onAction="#editarCancion" prefHeight="30.0" prefWidth="51.0" text="Editar" />
-      <Button fx:id="borrarCancion" layoutX="661.0" layoutY="347.0" mnemonicParsing="false" onAction="#borrarCancion" prefHeight="30.0" prefWidth="51.0" text="Borrar" />
+      <Button fx:id="borrarCancion" layoutX="608.0" layoutY="347.0" mnemonicParsing="false" onAction="#borrarCancion" prefHeight="30.0" prefWidth="104.0" text="Borrar" />
+      <Button fx:id="backBtn" layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#back" prefHeight="30.0" prefWidth="51.0" text="Salir" />
    </children>
 </AnchorPane>

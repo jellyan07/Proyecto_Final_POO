@@ -75,5 +75,29 @@ public class UsuarioDAO {
         return null;
     }
 
-    
+
+    public void editUsuario(String nombre, String apellido1, String apellido2, String correo, String nombre_usuario, int edad, String pais, String img, int id_usuario) throws SQLException {
+        Statement stmt = cnx.createStatement();
+        StringBuilder buildSentence = new StringBuilder("update into usuario set nombre = '");
+        buildSentence.append(nombre);
+        buildSentence.append("', apellido1 = '");
+        buildSentence.append(apellido1);
+        buildSentence.append("', apellido2 = '");
+        buildSentence.append(apellido2);
+        buildSentence.append("', correo = '");
+        buildSentence.append(correo);
+        buildSentence.append("', nombre_usuario = '");
+        buildSentence.append(nombre_usuario);
+        buildSentence.append("', edad = ");
+        buildSentence.append(edad);
+        buildSentence.append(", pais = '");
+        buildSentence.append(pais);
+        buildSentence.append("', img = '");
+        buildSentence.append(img);
+        buildSentence.append(" where idusuario = ");
+        buildSentence.append(id_usuario);
+        buildSentence.append(";");
+        System.out.println(buildSentence.toString());
+        stmt.execute(buildSentence.toString());
+    }
 }

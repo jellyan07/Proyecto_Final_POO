@@ -132,4 +132,15 @@ public class ControllerUsuario {
         escenaPrincipal.show();
     }
 
+    @FXML
+    private Button backBtn;
+
+    @FXML
+    void back(ActionEvent event) throws IOException {
+        // get a handle to the stage
+        Stage stage = (Stage) backBtn.getScene().getWindow();
+        // do what you have to do
+        stage.close();
+    }
+
 }

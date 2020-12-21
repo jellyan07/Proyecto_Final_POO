@@ -157,7 +157,7 @@ public class RegisterCancionUsuario {
             int calificacion = inputCalificacion.getValue();
 
 
-            gestor.crearCancion(nombre, artista_input, genero_input, compositor_input, lanzamiento, album_input, precio, creador, checkBox.isSelected(), calificacion, inputImg, inputCancion);
+            gestor.crearCancionUsuario(nombre, artista_input, genero_input, compositor_input, lanzamiento, album_input, precio, creador, checkBox.isSelected(), calificacion, inputImg, inputCancion);
 
             Stage escenaPrincipal = (Stage)((Node) event.getSource()).getScene().getWindow();
 

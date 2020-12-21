@@ -42,6 +42,11 @@
                   <Font size="17.0" />
                </font>
             </Button>
+            <Button fx:id="backBtn" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#back" prefHeight="48.0" prefWidth="81.0" text="Salir">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Button>
          </children></AnchorPane>
    </children>
 </GridPane>
