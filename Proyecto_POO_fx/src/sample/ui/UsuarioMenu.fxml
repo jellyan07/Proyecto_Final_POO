@@ -43,7 +43,7 @@
       <Button fx:id="borarBtn" layoutX="426.0" layoutY="348.0" mnemonicParsing="false" onAction="#borrar" prefHeight="30.0" prefWidth="72.0" text="Borrar" />
       <Slider fx:id="track" layoutX="14.0" layoutY="394.0" prefHeight="14.0" prefWidth="488.0" />
       <Slider fx:id="volume" layoutX="594.0" layoutY="394.0" prefHeight="14.0" prefWidth="119.0" />
-      <Button fx:id="play" layoutX="525.0" layoutY="389.0" mnemonicParsing="false" text="Play" />
+      <Button fx:id="play" layoutX="525.0" layoutY="389.0" mnemonicParsing="false" onAction="#play" text="Play" />
       <Button fx:id="previous" layoutX="502.0" layoutY="389.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="&lt;" />
       <Button fx:id="next" layoutX="563.0" layoutY="389.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="&gt;" />
       <Label fx:id="cancionLb" layoutX="14.0" layoutY="342.0" prefHeight="25.0" prefWidth="60.0" text="Cancion" />

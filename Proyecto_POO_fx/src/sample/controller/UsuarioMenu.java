@@ -13,11 +13,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import sample.Main;
 import sample.entidades.Cancion;
 import sample.entidades.ListadeReproduccion;
 import sample.gestor.Gestor;
 
+import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -131,11 +135,23 @@ public class UsuarioMenu {
     }
 
     @FXML
+    void play(ActionEvent event) {
+        /* Cancion cancion = queue.getSelectionModel().getSelectedItem();
+        Media media = new Media(new File(cancion.getLink()).toURI().toString());
+
+        //Instantiating MediaPlayer class
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+        //by setting this property to true, the audio will be played
+        mediaPlayer.setAutoPlay(true); */
+    }
+
+    @FXML
     void buscarCancion(ActionEvent event) throws SQLException {
         this.queue.getItems().clear();
         ObservableList<Cancion> cancionesBusqueda = FXCollections.observableArrayList();
         if (inputCancion != null) {
-            for(Cancion cancion : gestor.getQueue()) {
+            for(Cancion cancion : getCanciones()) {
                 if(cancion.getNombre().contains(inputCancion.getText())) {
                     cancionesBusqueda.add(cancion);
                 }
@@ -144,7 +160,7 @@ public class UsuarioMenu {
         } else {
             queueCancion.setCellValueFactory(new PropertyValueFactory<>("nombre"));
             queueArtista.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getArtista().getNombre()));
-            this.queue.setItems(getCancionesQueue());
+            this.queue.setItems(getCanciones());
         }
     }
 
@@ -187,7 +203,7 @@ public class UsuarioMenu {
                 throwables.printStackTrace();
             }
         });
-
+        queue.setItems(getCanciones());
 
         File file = new File(gestor.getUsuario().getImg());
         Image image = new Image(file.toURI().toString());
@@ -241,9 +257,17 @@ public class UsuarioMenu {
         escenaPrincipal.show();
     }
 
-    public ObservableList<Cancion> getCancionesQueue() throws SQLException {
+    /*public ObservableList<Cancion> getCancionesQueue() throws SQLException {
         ObservableList<Cancion> canciones = FXCollections.observableArrayList();
         for (Cancion cancion: gestor.getQueue()) {
+            canciones.add(cancion);
+        }
+        return canciones;
+    } */
+
+    public ObservableList<Cancion> getCanciones() throws SQLException {
+        ObservableList<Cancion> canciones = FXCollections.observableArrayList();
+        for (Cancion cancion: gestor.listCancionesUsuario(gestor.getUsuario())) {
             canciones.add(cancion);
         }
         return canciones;
